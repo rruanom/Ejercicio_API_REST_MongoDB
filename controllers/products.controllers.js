@@ -24,7 +24,6 @@ const createProductController = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     const { title, price, description, image, company_name } = req.body;
-    if (title && price && description && image && company_name) {
         try {
             const response = await productService.createProduct(title, price, description, image, company_name);
             res.status(201).json({
@@ -34,9 +33,6 @@ const createProductController = async (req, res) => {
         } catch (error) {
             res.status(500).json({ mensaje: error.message });
         }
-    } else {
-        res.status(400).json({ error: "Faltan campos de product" });
-    }
 };
 
 const updateProductController = async (req, res) => {
